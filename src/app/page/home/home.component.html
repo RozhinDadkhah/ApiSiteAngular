@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <header>
+        <h1>My Api website</h1>
+    </header>
+
+    <div class="col-sm-2 mt-4 mb-3">
+        <select class="form-select" aria-label="Default select example"
+            (change)="onChange($event)">
+            <option selected>Select Category</option>
+            <option *ngFor="let category of categoryList">
+                {{category | titlecase}}
+            </option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div *ngIf="showData; then allData else filter"></div>
+        <ng-template #allData>
+            <div class="col-lg-3 col-12 mt-3 mb-2"
+                *ngFor="let data of showAllData">
+                <a href={{data.url}} target="_blank">
+                    <div class="box">
+                        <h2>{{data.name | titlecase}}</h2>
+                        <p>
+                            <i class="bi bi-tag"></i>
+                            <span>{{ data.category |titlecase}}</span>
+                            |<i class="bi bi-back"></i>
+                            <span> {{data.type |titlecase}}</span>
+                        </p>
+                        <p>Visit Site <i class="bi bi-arrow-right"></i></p>
+                    </div>
+                </a>
+            </div>
+        </ng-template>
+
+        <ng-template #filter>
+            <div class="col-lg-3 col-12 mt-3 mb-2"
+                *ngFor="let data of filterDate">
+                <a href={{data.url}} target="_blank">
+                    <div class="box">
+                        <h2>{{data.name | titlecase}}</h2>
+                        <p>
+                            <i class="bi bi-tag"></i>
+                            <span>{{ data.category|titlecase}}</span>
+                            |<i class="bi bi-back"></i>
+                            <span> {{data.type | titlecase}}</span>
+                        </p>
+                        <p>Visit Site <i class="bi bi-arrow-right"></i></p>
+                    </div>
+                </a>
+            </div>
+        </ng-template>
+
+
+    </div>
+</div>
